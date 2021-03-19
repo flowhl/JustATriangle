@@ -16,9 +16,18 @@ _global_script_class_icons={
 [application]
 
 config/name="InfoTest1"
-run/main_scene="res://Control.tscn"
+run/main_scene="res://TitleScreen.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/borderless=true
+window/vsync/use_vsync=false
 
 [rendering]
 
+environment/default_clear_color=Color( 0.180392, 0.176471, 0.207843, 1 )
 environment/default_environment="res://default_env.tres"
