@@ -66,4 +66,5 @@ enabled_focus_mode = 0
 
 [node name="FadeIn Transition" parent="." instance=ExtResource( 5 )]
 visible = false
+[connection signal="pressed" from="Menu/centerContainer/ButtonContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="fade_finished" from="FadeIn Transition" to="." method="_on_FadeIn_Transition_fade_finished"]

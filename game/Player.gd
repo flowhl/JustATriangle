@@ -2,15 +2,25 @@ extends KinematicBody2D
 var movespeed = 500
 var movespeed_old
 var dashspeed = 2000
-var bulletspeed = 1000
-var bullet = preload("res://game/bullet.tscn")
-var fire_rate = 0.1
+var bulletspeed = 2000
+var Playerbullet = preload("res://game/PlayerBullet.tscn")
 var dash_ready = true
 var dash_counter_temp = 0;
 var dash_status = 5
 func _ready():
 	pass
+	
+	
+var fire_rate : float = 10 #Fire rate 10 bullets per second
+onready var update_delta : float = 1 / fire_rate
+var current_time : float = 0
+
+func _process(delta):
+	SkillLoop(delta)
 func _physics_process(delta):
+	MovementLoop()
+		
+func MovementLoop():
 	var motion = Vector2()
 	if dash_counter_temp >= 10:
 		dash_counter_temp = 0
@@ -30,23 +40,37 @@ func _physics_process(delta):
 		motion.x -= 1
 	if Input.is_action_pressed("right"):
 		motion.x += 1	
-	if Input.is_action_pressed("shoot"):
-		fire()		
+	
+		
 	motion = motion.normalized()
 	motion = move_and_slide(motion * movespeed)
 	
 	if movespeed == dashspeed:
 		movespeed = movespeed_old		
 	look_at(get_global_mouse_position())
+func SkillLoop(var delta):
+	current_time += delta
+	if (current_time < update_delta):
+		return
+	if Input.is_action_pressed("shoot"):
+		current_time = 0
+		fire()		
+		
+func death():
+	get_tree().reload_current_scene()
 	
-	
+func _on_Area2D_body_entered(body):
+	if "Enemybullet" in body.name:
+		death()
+	if "Enemy" in body.name:
+		death()
 	
 func fire():	
-	var bullet_instance = bullet.instance()
-	bullet_instance.position = get_global_position() 
-	bullet_instance.rotation_degrees = rotation_degrees
-	bullet_instance.apply_impulse(Vector2(), Vector2(bulletspeed,0).rotated(rotation))
-	get_tree().get_root().call_deferred("add_child", bullet_instance)
+	var Playerbullet_instance = Playerbullet.instance()
+	Playerbullet_instance.position = get_global_position() 
+	Playerbullet_instance.rotation_degrees = rotation_degrees
+	Playerbullet_instance.apply_impulse(Vector2(), Vector2(bulletspeed,0).rotated(rotation))
+	get_tree().get_root().call_deferred("add_child", Playerbullet_instance)
 	
 func reload_dash():
 	for n in range(1,6):
@@ -55,4 +79,7 @@ func reload_dash():
 	dash_counter_temp = 0
 	dash_ready = true
 	
-	
+
+
+
+

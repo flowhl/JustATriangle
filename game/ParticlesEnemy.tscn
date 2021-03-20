@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icons/particle.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.561404, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.467217, 1, 1, 1, 0.0509804 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 13.24
+direction = Vector3( 0, 0, 0 )
+spread = 111.26
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 22.99
+angular_velocity = 579.32
+angular_velocity_random = 0.44
+linear_accel = 9.2
+linear_accel_random = 0.14
+angle = 281.4
+angle_random = 1.0
+scale = 1.2
+scale_random = 0.18
+color_ramp = SubResource( 5 )
+hue_variation_random = 0.09
+
+[node name="Particles2D" type="Particles2D"]
+position = Vector2( -16.2159, -0.341492 )
+scale = Vector2( 0.4, 0.4 )
+amount = 1000
+lifetime = 0.2
+speed_scale = 0.7
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )
