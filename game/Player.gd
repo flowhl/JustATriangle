@@ -25,9 +25,11 @@ func MovementLoop():
 	if dash_counter_temp >= 10:
 		dash_counter_temp = 0
 		dash_ready = false
-		dash_status = 0
+		dash_status = 0		
 		reload_dash()
 	if Input.is_action_pressed("dash") && dash_ready:
+		if !$dashSound.playing && dash_counter_temp == 0:
+			$dashSound.play()
 		movespeed_old = movespeed
 		movespeed = dashspeed
 		dash_counter_temp = dash_counter_temp + 1 
@@ -57,6 +59,13 @@ func SkillLoop(var delta):
 		fire()		
 		
 func death():
+	$deathSound.play()
+	$Sprite.hide()
+	$Particles2D.hide()
+	$deathExplosion.emitting = true
+	yield(get_tree().create_timer(1.0), "timeout")
+	$deathExplosion.emitting = false
+	yield(get_tree().create_timer(4.0), "timeout")
 	get_tree().reload_current_scene()
 	
 func _on_Area2D_body_entered(body):
@@ -71,6 +80,7 @@ func fire():
 	Playerbullet_instance.rotation_degrees = rotation_degrees
 	Playerbullet_instance.apply_impulse(Vector2(), Vector2(bulletspeed,0).rotated(rotation))
 	get_tree().get_root().call_deferred("add_child", Playerbullet_instance)
+	$shootSound.play()
 	
 func reload_dash():
 	for n in range(1,6):
@@ -78,7 +88,7 @@ func reload_dash():
 		dash_status = n	
 	dash_counter_temp = 0
 	dash_ready = true
-	
+	$dashreload.play()
 
 
 

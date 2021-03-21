@@ -10,7 +10,7 @@ func _on_Button_pressed(scene_to_load):
 	scene_path_to_load = scene_to_load
 	$"FadeIn Transition".show()
 	$"FadeIn Transition".fade_in()
-
+	$Menu/ClickSound.play()
 
 func _on_FadeIn_Transition_fade_finished():
 	if shouldexit:
