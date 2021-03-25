@@ -5,6 +5,9 @@ var overlays = ["res://icons/overlay gui0.png", "res://icons/overlay gui1.png", 
 func _ready():
 	pass
 	
+func _process(delta):
+	if Input.is_action_pressed("esc menu"):
+		get_tree().change_scene("res://TitleScreen.tscn")
 	
 func setDashOverlay(level:int):
 	$CanvasLayer/GUI/TextureRect.texture = load(overlays[level])
@@ -28,3 +31,11 @@ func setAmmoCount(amount:int):
 	
 func playerGetAmmo(amount:int):
 	$Player.setAmmo(amount)
+func playerAddAmmo():
+	$Player.addAmmo()
+func playerAddHealth():
+	$Player.addHealth()
+func playerIncFirerate():
+	$Player.IncFirerate()	
+func playerIncSpeed():
+	$Player.IncSpeed()

@@ -128,10 +128,20 @@ func addHealth():
 	if HP + 1 <= 3:
 		HP = HP +1
 	setHealth()
+	
 func damageDelay():
 	detecthits = false
 	yield(get_tree().create_timer(1.0), "timeout")
 	detecthits = true
+	
 func setAmmo(amount:int):
 	ammo += amount
 	get_tree().get_root().get_node("World").setAmmoCount(ammo)
+
+func IncFirerate():
+	fire_rate += 20
+	
+func IncSpeed():
+	movespeed += 100
+func addAmmo():
+	setAmmo(ammo + 50)

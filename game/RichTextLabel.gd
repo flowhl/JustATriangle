@@ -17,7 +17,7 @@ func _process(delta):
 	if seconds < 10:
 		secondsTemp = "0" + str(seconds)
 	
-	set_text(str(minutesTemp + ":" + str(secondsTemp)))
+	bbcode_text = ("[center]" +  str(minutesTemp + ":" + str(secondsTemp)) + "[/center]")
 	
 
 
