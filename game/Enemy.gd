@@ -28,17 +28,22 @@ func _process(delta):
 	current_time = 0
 	if alive:
 		fire()
+		
 
 func death():	
 	alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	if !$enemyDeath.playing:
 		$enemyDeath.play()
 	$Sprite.hide()
 	$Particles2D.hide()
 	$deathParticles.emitting = true
 	yield(get_tree().create_timer(1.0), "timeout")
-	$deathParticles.emitting = false		
+	$deathParticles.emitting = false
+	get_tree().get_root().get_node("World").playerGetAmmo(10)
 	queue_free()
+	
 
 func _on_Area2D_body_entered(body):
 	if "Playerbullet" in body.name:

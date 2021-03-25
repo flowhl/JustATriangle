@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/ParticlesEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icons/Enemybullet modell44.png" type="Texture" id=2]
 [ext_resource path="res://icons/Enemybulletparticle.png" type="Texture" id=3]
+[ext_resource path="res://game/Enemybullet.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 9 )
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 4 )
 
-[node name="Ememybullet" type="RigidBody2D"]
+[node name="Enemybullet" type="RigidBody2D"]
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
