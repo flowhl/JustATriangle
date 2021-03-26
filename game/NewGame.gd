@@ -44,7 +44,7 @@ func playerIncSpeed():
 func resetGame():
 	get_tree().reload_current_scene()
 func addScore(value:int):
-	$CanvasLayer/GUI.setScore(value)
+	$CanvasLayer/GUI.addScore(value)
 
 func setWave():
 	$CanvasLayer/GUI.setWave(wave)

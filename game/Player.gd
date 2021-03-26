@@ -87,7 +87,7 @@ func _on_Area2D_body_entered(body):
 		damage()
 	
 func fire():	
-	if ammo > 0:
+	if ammo > 0 && alive:
 		var Playerbullet_instance = Playerbullet.instance()
 		Playerbullet_instance.position = get_global_position() 
 		Playerbullet_instance.rotation_degrees = rotation_degrees
