@@ -7,5 +7,5 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
-		get_tree().get_root().get_node("World").playerAddAmmo()		
+		get_tree().get_root().get_node("World").playerAddHealth()
 		queue_free()

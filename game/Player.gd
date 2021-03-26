@@ -6,7 +6,7 @@ var dashspeed = 2000
 
 var bulletspeed = 2000 
 var Playerbullet = preload("res://game/PlayerBullet.tscn") #bullet instance
-var fire_rate : float = 10 #Fire rate 10 bullets per second
+var fire_rate : float = 5 #Fire rate
 onready var update_delta : float = 1 / fire_rate
 var current_time : float = 0
 var ammo = 100
@@ -77,8 +77,8 @@ func death():
 	$deathExplosion.emitting = true
 	yield(get_tree().create_timer(1.0), "timeout")
 	$deathExplosion.emitting = false
-	yield(get_tree().create_timer(4.0), "timeout")
-	get_tree().reload_current_scene()
+	yield(get_tree().create_timer(4.0), "timeout")	
+	get_tree().get_root().get_node("World").showEndScreen()
 	
 func _on_Area2D_body_entered(body):
 	if "Enemybullet" in body.name:
@@ -134,14 +134,13 @@ func damageDelay():
 	yield(get_tree().create_timer(1.0), "timeout")
 	detecthits = true
 	
-func setAmmo(amount:int):
+func setAmmo(amount:int): #sets ammo amount
 	ammo += amount
 	get_tree().get_root().get_node("World").setAmmoCount(ammo)
-
-func IncFirerate():
-	fire_rate += 20
-	
-func IncSpeed():
+func IncFirerate(): #increses firerate
+	fire_rate += 3
+	update_delta = 1 / fire_rate
+func IncSpeed(): #increases speed
 	movespeed += 100
-func addAmmo():
-	setAmmo(ammo + 50)
+func addAmmo(): #adds 50 ammo
+	setAmmo(50)

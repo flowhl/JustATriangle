@@ -16,7 +16,7 @@ func _on_FadeIn_Transition_fade_finished():
 	if shouldexit:
 		get_tree().quit()
 	get_tree().change_scene(scene_path_to_load)
-
+	
 
 func _on_ExitButton_pressed():
 	shouldexit = true
