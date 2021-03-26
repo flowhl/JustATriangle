@@ -1,4 +1,4 @@
-### [:red_circle: download latest version](https://github.com/sntlyeet/SiegeSkinSwitcher/releases/latest/download/setup.exe)
+### [:red_circle: download latest version](https://github.com/sntlyeet/JustATriangle/releases/tag/1.0.1)
 ![Logo](https://i.ibb.co/XD3wnF0/logo.png)
 # Introduction
 This is just a triangle
